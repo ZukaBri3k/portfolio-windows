@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 interface menu {
   open: boolean;
-  component: ReactNode;
+  component?: ReactNode;
 }
 
 export interface menuType {
