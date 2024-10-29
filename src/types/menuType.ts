@@ -7,4 +7,5 @@ interface menu {
 
 export interface menuType {
   windowsMenu: menu;
+  fileExplorerMenu: menu;
 }
