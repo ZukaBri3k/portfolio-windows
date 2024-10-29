@@ -22,10 +22,7 @@
 
       "baseUrl": ".",
       "paths": {
-          "@components/*": ["src/components/*"],
-          "@assets/*": ["src/assets/*"],
-          "@pages/*": ["src/pages/*"],
-          "@windows/*": ["src/windows/*"],
+          "@/*": ["src/*"]
       }
   },
   "include": ["src", "tailwind.config.js"]
