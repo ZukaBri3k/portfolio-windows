@@ -4,6 +4,7 @@ import {WindowsWindow} from "@/windows/WindowsWindow.tsx";
 import {menuType} from "../types/menuType.ts";
 import {MenusContext} from "../context/menusContext.ts";
 import {FileExplorer} from "@/windows/FileExplorer.tsx";
+import {FileExplorerDesktopIcon} from "@/icons/FileExplorerDesktopIcon.tsx";
 
 
 export default function Desktop() {
@@ -27,6 +28,7 @@ export default function Desktop() {
           >
             <Taskbar/>
           </div>
+          <FileExplorerDesktopIcon/>
           {menuState.windowsMenu.open && menuState.windowsMenu.component}
           {menuState.fileExplorerMenu.open && menuState.fileExplorerMenu.component}
         </div>
