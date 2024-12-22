@@ -3,13 +3,15 @@ import {useContext, useEffect, useRef} from "react";
 import anime from "animejs";
 import {MenusContext} from "@/context/menusContext.ts";
 import {Power, Search} from "lucide-react";
-import User from "@/assets/icons/utilisateur.png";
+import PP from "@/assets/images/profil_picture.jpeg";
 import {menuType} from "@/types/menuType.ts";
+import {useNavigate} from "react-router-dom";
 
 
 export function WindowsWindow() {
   const modalRef = useRef<HTMLDivElement>(null);
   const {setMenuState} = useContext(MenusContext);
+  const navigate = useNavigate();
   
   useEffect(() => {
     anime({
@@ -45,7 +47,7 @@ export function WindowsWindow() {
     <div className="w-full h-full">
       <div
         ref={modalRef}
-        className="z-[100] absolute right-1/2 bottom-[-600px] translate-x-1/2 translate-y-1/2 lg:w-5/12 md:w-4/5 h-5/6 rounded-2xl bg-slate-800/95 backdrop-blur-xl flex justify-center items-center flex-col border-[0.5px] border-slate-600"
+        className="z-[100] absolute right-1/2 bottom-[-600px] translate-x-1/2 translate-y-1/2 lg:w-5/12 md:w-4/5 w-11/12 h-5/6 rounded-2xl bg-slate-800/95 backdrop-blur-xl flex justify-center items-center flex-col border-[0.5px] border-slate-600"
       >
         <div
           className="flex items-center w-11/12 h-fit gap-5 bg-slate-900 p-2 m-10 rounded-3xl border-[0.5px] border-slate-700">
@@ -60,13 +62,15 @@ export function WindowsWindow() {
         <div className="w-full h-full"></div>
         <div className="w-full h-[100px] bg-slate-900/40 rounded-b-xl flex items-center pl-12 pr-12">
           <div className="flex gap-2 items-center w-full">
-            <img src={User} alt="User profil picture" className="w-[50px]"/>
+            <img src={PP} alt="User profil picture" className="w-[50px] rounded-full"/>
             <p className="text-slate-300">Kyrill DUMERCHAT</p>
           </div>
-          <Power size={24} strokeWidth={1.5} color="#E2E8F0"/>
+          <button className="hover:bg-slate-500/50 p-2 rounded duration-100" onClick={() => navigate("/")}>
+            <Power size={24} strokeWidth={1.5} color="#E2E8F0"/>
+          </button>
         </div>
       </div>
-      <div className="w-full h-full z-[99] absolute top-0 left-0" onClick={close}/>
+      <div className="w-full h-full z-[49] absolute top-0 left-0" onClick={close}/>
     </div>,
     document.getElementById("window") as HTMLElement
   );
