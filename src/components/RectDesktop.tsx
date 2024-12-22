@@ -53,6 +53,8 @@ export function RectDesktop() {
       <polygon
         points={`${startPoint.x},${startPoint.y} ${endPoint.x},${startPoint.y} ${endPoint.x},${endPoint.y} ${startPoint.x},${endPoint.y}`}
         fill="blue"
+        fillOpacity="0.7"
+        stroke="blue"
         opacity={0.5}
       />
     </svg>
