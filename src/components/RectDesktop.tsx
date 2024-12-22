@@ -1,10 +1,6 @@
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 
-interface props {
-  reference: React.MutableRefObject<HTMLElement | null>;
-}
-
-export function RectDesktop({reference}: props) {
+export function RectDesktop() {
   const [startPoint, setStartPoint] = useState({x: 0, y: 0});
   const [endPoint, setEndPoint] = useState({x: 0, y: 0});
   
@@ -12,44 +8,48 @@ export function RectDesktop({reference}: props) {
     let startPoint = {x: 0, y: 0};
     let endPoint = {x: 0, y: 0};
     let isMouseDown: boolean = false;
-    const ref = reference?.current;
     
-    ref?.addEventListener("mousedown", (e) => {
-      console.log("mousedown");
-      startPoint = {x: e.clientX, y: e.clientY};
-      setStartPoint(startPoint);
-      endPoint = {x: e.clientX, y: e.clientY};
-      setEndPoint(endPoint);
-      isMouseDown = true;
-    });
+    function mouseDown(e: MouseEvent) {
+      const event = e.target as HTMLElement;
+      if (event.id === "svg-rect") {
+        startPoint = {x: e.clientX, y: e.clientY};
+        setStartPoint(startPoint);
+        endPoint = {x: e.clientX, y: e.clientY};
+        setEndPoint(endPoint);
+        isMouseDown = true;
+      }
+    }
     
-    ref?.addEventListener("mouseup", () => {
+    window.addEventListener("mousedown", mouseDown);
+    
+    function mouseUp() {
       startPoint = {x: 0, y: 0};
       setStartPoint(startPoint);
       endPoint = {x: 0, y: 0};
       setEndPoint(endPoint);
       isMouseDown = false;
-    });
+    }
     
-    ref?.addEventListener("mousemove", (e) => {
+    window.addEventListener("mouseup", mouseUp);
+    
+    function mouseMove(e: MouseEvent) {
       if (isMouseDown) {
         endPoint = {x: e.clientX, y: e.clientY};
         setEndPoint(endPoint);
       }
-    });
+    }
+    
+    window.addEventListener("mousemove", mouseMove);
     
     return () => {
-      ref?.removeEventListener("mousedown", () => {
-      });
-      ref?.removeEventListener("mouseup", () => {
-      });
-      ref?.removeEventListener("mousemove", () => {
-      });
+      window.removeEventListener("mousedown", mouseDown);
+      window.removeEventListener("mouseup", mouseUp);
+      window.removeEventListener("mousemove", mouseMove);
     };
-  }, [reference]);
+  }, []);
   
   return (
-    <svg width="100%" height="100%" className="z-0">
+    <svg width="100%" height="100%" className="z-0" id="svg-rect">
       <polygon
         points={`${startPoint.x},${startPoint.y} ${endPoint.x},${startPoint.y} ${endPoint.x},${endPoint.y} ${startPoint.x},${endPoint.y}`}
         fill="blue"
