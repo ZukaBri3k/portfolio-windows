@@ -9,12 +9,7 @@ interface props {
 export function DesktopIconWrapper({ children }: props) {
   return (
     <Draggable axis="both">
-      <div className="" onContextMenu={(e) => {
-        e.preventDefault();
-        console.log(e);
-      }}>
         {children}
-      </div>
     </Draggable>
   );
 }
