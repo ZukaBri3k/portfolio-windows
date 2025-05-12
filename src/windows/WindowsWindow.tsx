@@ -65,7 +65,7 @@ export function WindowsWindow() {
             <img src={PP} alt="User profil picture" className="w-[50px] rounded-full"/>
             <p className="text-slate-300">Kyrill DUMERCHAT</p>
           </div>
-          <button className="hover:bg-slate-500/50 p-2 rounded duration-100" onClick={() => navigate("/")}>
+          <button className="hover:bg-slate-500/50 p-2 rounded duration-100" onClick={() => navigate(import.meta.env.BASE_URL + "/")}>
             <Power size={24} strokeWidth={1.5} color="#E2E8F0"/>
           </button>
         </div>

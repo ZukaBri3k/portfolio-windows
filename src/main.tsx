@@ -9,8 +9,8 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/desktop" element={<Desktop/>}/>
-        <Route path="/" element={<Login/>}/>
+        <Route path={import.meta.env.BASE_URL + "/desktop"} element={<Desktop/>}/>
+        <Route path={import.meta.env.BASE_URL + "/"} element={<Login/>}/>
       </Routes>
     </BrowserRouter>
   </StrictMode>
