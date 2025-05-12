@@ -34,8 +34,8 @@ export function WindowWrapper({children, title, window}: props) {
   return (
     <Draggable bounds="parent" handle="#handle" disabled={isFullScreen} >
       <div
-        className={(isFullScreen ? "w-full h-[95dvh] top-0 left-0 " : "w-[60dvw] h-[70dvh] bottom-[20dvh] right-[40dvh] translate-x-[60dvh] translate-y-[70dvh] ") +` absolute bg-slate-900/90 z-20 flex flex-col rounded-xl border-[0.5px] border-slate-600`} ref={dragRef}>
-        <div className="min-h-10 max-h-10 w-full cursor-pointer flex items-center" id="tooltip">
+        className={(isFullScreen ? "w-full h-[95dvh] top-0 left-0 " : "w-[60dvw] h-[70dvh] bottom-[20dvh] right-[40dvh] translate-x-[60dvh] translate-y-[70dvh] ") +` absolute bg-slate-900/90 z-20 flex flex-col rounded-xl border-[0.5px] border-slate-600 overflow-hidden`} ref={dragRef}>
+        <div className="h-10 w-full cursor-pointer flex items-center flex-shrink-0" id="tooltip">
           <div id="handle" className="h-full w-full flex items-center justify-start pl-5">
             <h2 className="text-slate-50">{title}</h2>
           </div>
