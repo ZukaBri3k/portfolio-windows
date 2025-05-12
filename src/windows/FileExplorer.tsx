@@ -17,8 +17,8 @@ import { ArrowLeft, ArrowRight, ArrowUp, ChevronRight, House, RotateCw, Search }
 export function FileExplorer() {
   return createPortal(
     <WindowWrapper title="File explorer" window="fileExplorerMenu">
-      <div className="flex flex-col h-full">
-        <div className="min-h-14 bg-zinc-800 w-full h-[8%] p-2 flex justify-start items-center gap-5">
+      <div style={{height: "calc(100% - 2.5rem)"}} className="flex flex-col flex-shrink">
+        <div className="min-h-14 bg-zinc-800 w-full h-fit p-2 flex justify-start items-center gap-5">
           <div className="flex justify-center items-center gap-9">
             <ArrowLeft size={28} className="text-slate-400 hover:bg-slate-200/30 rounded-lg duration-150" />
             <ArrowRight className="text-slate-400 hover:bg-slate-200/30 rounded-lg duration-150" />
@@ -35,8 +35,8 @@ export function FileExplorer() {
             <Search className="text-slate-400 mr-3" />
           </div>
         </div>
-        <div className="bg-stone-900 border-t-[0.5px] border-t-slate-600 flex justify-start items-stretch h-[92%]">
-          <div className="border-r-[0.5px] border-r-slate-600 w-[250px] overflow-y-scroll flex flex-col gap-5 pt-5 p-1 h-full">
+        <div style={{height: "calc(100% - 3.5rem)"}} className="bg-stone-900 border-t-[0.5px] border-t-slate-600 flex justify-start items-stretch">
+          <div className="border-r-[0.5px] border-r-slate-600 w-[250px] overflow-y-auto flex flex-col gap-5 p-1 pt-5 pb-5">
             <div className="pl-8 p-2 flex justify-start items-center gap-3 hover:bg-slate-500/40 rounded duration-150 cursor-pointer">
               <img width={24} src={HomeIcon} alt="home icon" />
               <p className="text-slate-50">Home</p>
