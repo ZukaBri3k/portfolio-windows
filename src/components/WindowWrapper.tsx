@@ -49,7 +49,7 @@ export function WindowWrapper({children, title, window}: props) {
             }}>
               <Square strokeWidth={1.5} color="#E2E8F0" size={15}/>
             </button>
-            <button className="w-14 h-full hover:bg-red-700 flex items-center justify-center" onClick={closeWindow}>
+            <button className="w-14 h-full hover:bg-red-700 flex items-center justify-center rounded-tr-xl" onClick={closeWindow}>
               <X strokeWidth={1.5} color="#E2E8F0" size={20}/>
             </button>
           </div>
