@@ -8,9 +8,10 @@ interface props extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   title: string;
   window: string;
+  icon?: string;
 }
 
-export function WindowWrapper({children, title, window}: props) {
+export function WindowWrapper({children, title, window, icon}: props) {
   
   const {setMenuState, menuState} = useContext(MenusContext);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -36,7 +37,8 @@ export function WindowWrapper({children, title, window}: props) {
       <div
         className={(isFullScreen ? "w-full h-[95dvh] top-0 left-0 " : "w-[60dvw] h-[70dvh] bottom-[20dvh] right-[40dvh] translate-x-[60dvh] translate-y-[70dvh] ") +` absolute bg-slate-900/90 z-20 flex flex-col rounded-xl border-[0.5px] border-slate-600 overflow-hidden`} ref={dragRef}>
         <div className="h-10 w-full cursor-pointer flex items-center flex-shrink-0" id="tooltip">
-          <div id="handle" className="h-full w-full flex items-center justify-start pl-5">
+          <div id="handle" className="h-full w-full flex items-center justify-start gap-3 pl-5 cursor-move">
+            {icon && <img src={icon} alt={`Icon of the application ${title}`} className="w-[24px] pointer-events-none" />}
             <h2 className="text-slate-50">{title}</h2>
           </div>
           <div className="w-fit h-full flex items-center">
