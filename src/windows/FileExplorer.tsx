@@ -42,45 +42,45 @@ export function FileExplorer() {
               <p className="text-slate-50">Home</p>
             </div>
             <div className="pl-8 p-2 flex justify-start items-center gap-3 hover:bg-slate-500/40 rounded duration-150 cursor-pointer">
-              <img width={24} src={GalleryIcon} alt="home icon" />
+              <img width={24} src={GalleryIcon} alt="gallery icon" />
               <p className="text-slate-50">Gallery</p>
             </div>
 
             <hr className="ml-2 border-gray-600/80" />
 
             <div className="pl-8 p-2 rounded-l flex justify-start items-center gap-3 bg-slate-500/40">
-              <img width={24} src={DesktopIcon} alt="home icon" />
+              <img width={24} src={DesktopIcon} alt="desktop icon" />
               <p className="text-slate-50">Desktop</p>
             </div>
             <div className="pl-8 p-2 flex justify-start items-center gap-3 hover:bg-slate-500/40 rounded duration-150 cursor-pointer">
-              <img width={24} src={DownloadsIcon} alt="home icon" />
+              <img width={24} src={DownloadsIcon} alt="download icon" />
               <p className="text-slate-50">Downloads</p>
             </div>
             <div className="pl-8 p-2 flex justify-start items-center gap-3 hover:bg-slate-500/40 rounded duration-150 cursor-pointer">
-              <img width={24} src={DocumentsIcon} alt="home icon" />
+              <img width={24} src={DocumentsIcon} alt="documents icon" />
               <p className="text-slate-50">Documents</p>
             </div>
             <div className="pl-8 p-2 flex justify-start items-center gap-3 hover:bg-slate-500/40 rounded duration-150 cursor-pointer">
-              <img width={24} src={PicturesIcon} alt="home icon" />
+              <img width={24} src={PicturesIcon} alt="pictures icon" />
               <p className="text-slate-50">Pictures</p>
             </div>
             <div className="pl-8 p-2 flex justify-start items-center gap-3 hover:bg-slate-500/40 rounded duration-150 cursor-pointer">
-              <img width={24} src={MusicsIcon} alt="home icon" />
+              <img width={24} src={MusicsIcon} alt="musics icon" />
               <p className="text-slate-50">Music</p>
             </div>
             <div className="pl-8 p-2 flex justify-start items-center gap-3 hover:bg-slate-500/40 rounded duration-150 cursor-pointer">
-              <img width={24} src={VideosIcon} alt="home icon" />
+              <img width={24} src={VideosIcon} alt="videos icon" />
               <p className="text-slate-50">Videos</p>
             </div>
 
             <hr className="ml-2 border-gray-600/80" />
 
             <div className="pl-8 p-2 flex justify-start items-center gap-3 hover:bg-slate-500/40 rounded duration-150 cursor-pointer">
-              <img width={24} src={PcIcon} alt="home icon" />
+              <img width={24} src={PcIcon} alt="PC icon" />
               <p className="text-slate-50">This PC</p>
             </div>
             <div className="pl-8 p-2 flex justify-start items-center gap-3 hover:bg-slate-500/40 rounded duration-150 cursor-pointer">
-              <img width={24} src={NetworkIcon} alt="home icon" />
+              <img width={24} src={NetworkIcon} alt="network icon" />
               <p className="text-slate-50">Network</p>
             </div>
           </div>
