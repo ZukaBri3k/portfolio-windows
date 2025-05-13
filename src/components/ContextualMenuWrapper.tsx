@@ -22,7 +22,7 @@ export function ContextualMenuWrapper({ handleRef, children }: { children: React
     };
     document.addEventListener("mousedown", handleClick);
     return () => document.removeEventListener("mousedown", handleClick);
-  }, []);
+  }, [handleRef]);
 
   return (
     visible && (<div style={{ top: position.y, left: position.x }} className="w-fit h-fit absolute">
