@@ -6,6 +6,8 @@ import { MenusContext } from "../context/menusContext.ts";
 import { FileExplorer } from "@/windows/FileExplorer.tsx";
 import { FileExplorerDesktopIcon } from "@/icons/FileExplorerDesktopIcon.tsx";
 import { RectDesktop } from "@/components/RectDesktop.tsx";
+import { BraveBrowser } from "@/windows/BraveBrowser.tsx";
+import { BraveBrowserDesktopIcon } from "@/icons/BraveBrowserDesktopIcon.tsx";
 
 export default function Desktop() {
   const [menuState, setMenuState] = useState<menuType>({
@@ -17,6 +19,10 @@ export default function Desktop() {
       open: false,
       component: <FileExplorer />,
     },
+    braveBrowser: {
+      open: false,
+      component: <BraveBrowser />,
+    }
   });
 
   return (
@@ -28,10 +34,12 @@ export default function Desktop() {
         >
           <RectDesktop />
           <FileExplorerDesktopIcon />
+          <BraveBrowserDesktopIcon />
         </div>
         <Taskbar />
         {menuState.windowsMenu.open && menuState.windowsMenu.component}
         {menuState.fileExplorerMenu.open && menuState.fileExplorerMenu.component}
+        {menuState.braveBrowser.open && menuState.braveBrowser.component}
       </div>
     </MenusContext.Provider>
   );
