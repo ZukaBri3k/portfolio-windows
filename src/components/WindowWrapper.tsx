@@ -3,54 +3,44 @@ import Draggable from "react-draggable";
 import {Minus, Square, X} from "lucide-react";
 import {MenusContext} from "@/context/menusContext.ts";
 import { FocusContext } from "@/context/focusContext";
+import { WindowsContext } from "@/context/windowsContext";
 
 
 interface props extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   title: string;
-  window: string;
   icon?: string;
+  windowId: string;
 }
 
-export function WindowWrapper({children, title, window, icon}: props) {
+export function WindowWrapper({children, title, icon, windowId}: props) {
   
-  const {setMenuState, menuState} = useContext(MenusContext);
+  const { setWindows } = useContext(WindowsContext)
   const { focusedWindow, setFocusedWindow } = useContext(FocusContext);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const dragRef = useRef<HTMLDivElement>(null);
 
   // Set the z-index of the window based on whether it is focused or not
   const zIndex = useMemo(() => {
-    if (focusedWindow === window) {
+    if (focusedWindow === windowId) {
       return 21;
     } else {
       return 20;
     }
-  }, [focusedWindow, window]);
+  }, [focusedWindow, windowId]);
   
   useEffect(() => {
     // Add event listener to the dragRef to set the focused window when the window is clicked
     dragRef.current?.addEventListener("mousedown", () => {
-      setFocusedWindow(window);
+      setFocusedWindow(windowId);
     })
 
     // Set the initial focused window when the component mounts
-    setFocusedWindow(window);
+    setFocusedWindow(windowId);
   }, [])
 
   function closeWindow() {
-    if (menuState) {
-      const windowState = menuState[window as keyof typeof menuState];
-      setMenuState((prev) => {
-        return {
-          ...prev,
-          [window]: {
-            ...windowState,
-            open: false
-          }
-        };
-      });
-    }
+    setWindows((prev) => prev.filter((w) => w.windowId !== windowId))
   }
   
   return (

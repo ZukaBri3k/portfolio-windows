@@ -1,14 +1,18 @@
 import Windows from "@/assets/images/logo_windows.png";
 import {Bell, ChevronUp, Search, Volume2, Wifi} from "lucide-react";
 import {useContext} from "react";
-import {WindowsWindow} from "@/windows/WindowsWindow.tsx";
-import FileExplorer from "@/assets/icons/file-explorer.png";
-import {MenusContext} from "@/context/menusContext.ts";
+import FileExplorerIcon from "@/assets/icons/file-explorer.png";
+import { WindowsContext } from "@/context/windowsContext";
+import { FileExplorer } from "@/windows/FileExplorer";
 
 
-export function Taskbar() {
+interface props {
+  setStartWindow: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-  const {setMenuState, menuState} = useContext(MenusContext);
+export function Taskbar({setStartWindow} : props) {
+
+  const {setWindows, windows} = useContext(WindowsContext);
 
   return (
       <div
@@ -16,17 +20,7 @@ export function Taskbar() {
         <div className="absolute m-auto flex h-full w-fit items-center justify-center gap-3">
           <button
               className="rounded-md p-2 duration-100 ease-in hover:border-slate-300/60 hover:bg-slate-700/40"
-              onClick={() =>
-                  setMenuState((prev) => {
-                    return {
-                      ...prev,
-                      windowsMenu: {
-                        open: !prev.windowsMenu.open,
-                        component: <WindowsWindow/>,
-                      },
-                    };
-                  })
-              }
+              onClick={() => setStartWindow((prev: boolean) => !prev)}
           >
             <img
                 src={Windows}
@@ -44,19 +38,12 @@ export function Taskbar() {
             />
           </div>
           <button
-              className={`h-fit w-fit hover:bg-slate-700/40 p-2 rounded duration-100 ease-in ${menuState?.fileExplorerMenu.open ? "bg-slate-700/50 hover:bg-slate-700/70 border-[0.5px] border-slate-600/50" : ""}`}
+              className={`h-fit w-fit hover:bg-slate-700/40 p-2 rounded duration-100 ease-in ${windows.find((window) => window.window.type === FileExplorer) ? "bg-slate-700/50 hover:bg-slate-700/70 border-[0.5px] border-slate-600/50" : ""}`}
               onClick={() => {
-                setMenuState((prev) => {
-                  return {
-                    ...prev,
-                    fileExplorerMenu: {
-                      open: true,
-                      component: prev.fileExplorerMenu.component,
-                    },
-                  };
-                });
+                const windowId = Date.now().toString();
+                setWindows((prev) => [...prev, {windowId, window: <FileExplorer key={windowId} windowId={windowId} /> }])
               }}>
-            <img src={FileExplorer} alt="File explorer" className="w-[32px] h-[32px]"/>
+            <img src={FileExplorerIcon} alt="File explorer" className="w-[32px] h-[32px]"/>
           </button>
         </div>
         <div className="flex flex-row items-center justify-end gap-3 w-[100%]">

@@ -14,10 +14,13 @@ import PcIcon from "@/assets/icons/pc.png";
 import { ArrowLeft, ArrowRight, ArrowUp, ChevronRight, House, RotateCw, Search } from "lucide-react";
 import FileExplorerIcon from "@/assets/icons/file-explorer.png";
 
+interface props {
+  windowId: string;
+}
 
-export function FileExplorer() {
+export function FileExplorer({windowId} : props) {
   return createPortal(
-    <WindowWrapper title="File explorer" window="fileExplorerMenu" icon={FileExplorerIcon}>
+    <WindowWrapper title="File explorer" icon={FileExplorerIcon} windowId={windowId}>
       <div style={{height: "calc(100% - 2.5rem)"}} className="flex flex-col flex-shrink">
         <div className="min-h-14 bg-zinc-800 w-full h-fit p-2 flex justify-start items-center gap-5">
           <div className="flex justify-center items-center gap-9">

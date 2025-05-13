@@ -5,12 +5,17 @@ import BraveBrowserIcon from "@/assets/icons/brave-browser.png";
 import { useHistory } from "@/hooks/useHistory";
 import { ChevronLeft, ChevronRight, Home, RefreshCcw } from "lucide-react";
 
-export function BraveBrowser() {
+
+interface props {
+  windowId: string;
+}
+
+export function BraveBrowser({windowId} : props) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const { canGoBack, canGoForward, currentURL, goBack, goForward, clearHistory } = useHistory();
 
   return createPortal(
-    <WindowWrapper title="Brave browser" window="braveBrowser" icon={BraveBrowserIcon}>
+    <WindowWrapper title="Brave browser" icon={BraveBrowserIcon} windowId={windowId}>
       <div className="w-full h-full flex flex-col items-center justify-center">
         <div className="bg-stone-600 w-full p-2 flex items-center justify-start gap-3">
           <button onClick={goBack} style={{ color: canGoBack() ? "oklch(98.5% 0.001 106.423)" : "oklch(55.3% 0.013 58.071)" }} disabled={!canGoBack}>

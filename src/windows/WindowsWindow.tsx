@@ -1,16 +1,17 @@
 import {createPortal} from "react-dom";
-import {useContext, useEffect, useRef} from "react";
+import {useEffect, useRef} from "react";
 import anime from "animejs";
-import {MenusContext} from "@/context/menusContext.ts";
 import {Power, Search} from "lucide-react";
 import PP from "@/assets/images/profil_picture.jpeg";
-import {menuType} from "@/types/menuType.ts";
 import {useNavigate} from "react-router-dom";
 
 
-export function WindowsWindow() {
+interface props {
+  setIsOpen: (isOpen: boolean) => void;
+}
+
+export function StartWindow({setIsOpen} : props) {
   const modalRef = useRef<HTMLDivElement>(null);
-  const {setMenuState} = useContext(MenusContext);
   const navigate = useNavigate();
   
   useEffect(() => {
@@ -30,15 +31,7 @@ export function WindowsWindow() {
       elasticity: 0,
       bottom: "-600px",
       complete: () => {
-        setMenuState((prev): menuType => {
-          return {
-            ...prev,
-            windowsMenu: {
-              open: false,
-              component: prev.windowsMenu.component,
-            },
-          };
-        });
+        setIsOpen(false);
       },
     });
   }
