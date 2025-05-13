@@ -2,7 +2,7 @@ import { RefObject, useContext } from "react";
 import { ContextualMenuWrapper } from "./ContextualMenuWrapper";
 import FileExplorerIcon from "@/assets/icons/file-explorer.png";
 import OpenInNewTabIcon from "@/assets/icons/open-in-new-tab.png";
-import { ChevronRight, Cloud, Share, Star } from "lucide-react";
+import { ChevronRight, Cloud, Star } from "lucide-react";
 import PinIcon from "@/assets/icons/pin.png";
 import ZipIcon from "@/assets/icons/zip-icon.png";
 import CopyPathIcon from "@/assets/icons/copy-path.png";
