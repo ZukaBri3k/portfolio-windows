@@ -1,4 +1,4 @@
-import { RefObject } from "react";
+import { RefObject, useContext } from "react";
 import { ContextualMenuWrapper } from "./ContextualMenuWrapper";
 import FileExplorerIcon from "@/assets/icons/file-explorer.png";
 import OpenInNewTabIcon from "@/assets/icons/open-in-new-tab.png";
@@ -15,12 +15,15 @@ import CutIcon from "@/assets/icons/cut.png";
 import CopyIcon from "@/assets/icons/copy.png";
 import RenameIcon from "@/assets/icons/rename.png";
 import ShareIcon from "@/assets/icons/share.png";
+import { MenusContext } from "@/context/menusContext";
 
 interface props {
   handleRef: RefObject<HTMLDivElement>;
 }
 
 export function FolderContextualMenu({ handleRef }: props) {
+  const { setMenuState } = useContext(MenusContext);
+
   return (
     <ContextualMenuWrapper handleRef={handleRef}>
       <div className="absolute w-[300px] h-fit bg-slate-800/80 backdrop-blur rounded-lg shadow-lg border-[1px] border-slate-700">
@@ -37,7 +40,17 @@ export function FolderContextualMenu({ handleRef }: props) {
           <div className="flex justify-between items-center gap-2 pl-4 hover:bg-slate-700/40 cursor-pointer">
             <div className="flex justify-start items-center gap-2">
               <img src={FileExplorerIcon} alt="File explorer icon" className="w-[26px]" />
-              <button className="p-2">Open</button>
+              <button className="contextualMenuFonctionalButton p-2" onClick={() => {
+                setMenuState((prev) => {
+                  return {
+                    ...prev,
+                    fileExplorerMenu: {
+                      ...prev.fileExplorerMenu,
+                      open: true
+                    }
+                  }
+                })
+              }}>Open</button>
             </div>
             <p className="mr-2 text-slate-400 text-sm">Enter</p>
           </div>

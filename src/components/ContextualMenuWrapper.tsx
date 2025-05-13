@@ -9,10 +9,17 @@ export function ContextualMenuWrapper({ handleRef, children }: { children: React
       e.preventDefault();
       setPosition({ x: e.pageX, y: e.pageY });
       setVisible(true);
-      console.log(children)
     });
 
-    const handleClick = () => setVisible(false);
+    const handleClick = (e: MouseEvent) => {
+      const target = (e.target as HTMLButtonElement);
+
+      // Close and perform a click if the target is a button inside the menu and contains the class "contextualMenuFonctionalButton"
+      if (target.classList.contains("contextualMenuFonctionalButton")) {
+        target.click();
+      }
+      setVisible(false)
+    };
     document.addEventListener("mousedown", handleClick);
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
