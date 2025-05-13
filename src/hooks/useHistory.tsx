@@ -1,29 +1,44 @@
 import { useState } from "react";
 
-export function useHistory() {
-  const [history, setHistory] = useState<string[]>([]);
+export function useHistory(defaultURL: string = "https://www.google.com/webhp?igu=1") {
+  const [history, setHistory] = useState<string[]>([defaultURL]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   function addToHistory(url: string) {
+    console.log(currentIndex, history)
     setHistory((prev) => [...prev, url]);
     setCurrentIndex((prev) => prev + 1);
   }
 
   function goBack() {
-    setCurrentIndex((prev) => Math.max(prev - 1, 0));
+    console.log(currentIndex, history)
+    if(currentIndex > 0) {
+      setCurrentIndex((prev) => prev - 1);
+    }
   }
 
   function goForward() {
-    setCurrentIndex((prev) => Math.min(prev + 1, history.length - 1));
+    console.log(currentIndex, history)
+    if(currentIndex < history.length - 1) {
+      setCurrentIndex((prev) => prev + 1);
+    }
   }
 
   function canGoBack() {
+    console.log(currentIndex, history)
     return currentIndex > 0;
   }
 
   function canGoForward() {
+    console.log(currentIndex, history)
     return currentIndex < history.length - 1;
   }
 
-  return { currentURL: history[currentIndex], addToHistory, goBack, canGoBack, goForward, canGoForward };
+  function clearHistory() {
+    console.log(currentIndex, history)
+    setHistory([defaultURL]);
+    setCurrentIndex(0);
+  }
+
+  return { currentURL: history[currentIndex], addToHistory, goBack, canGoBack, goForward, canGoForward, clearHistory };
 }
