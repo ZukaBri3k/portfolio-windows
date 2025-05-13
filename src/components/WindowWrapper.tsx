@@ -1,7 +1,6 @@
 import {HTMLAttributes, ReactNode, useContext, useEffect, useMemo, useRef, useState} from "react";
 import Draggable from "react-draggable";
 import {Minus, Square, X} from "lucide-react";
-import {MenusContext} from "@/context/menusContext.ts";
 import { FocusContext } from "@/context/focusContext";
 import { WindowsContext } from "@/context/windowsContext";
 

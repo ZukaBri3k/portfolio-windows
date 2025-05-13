@@ -15,14 +15,15 @@ import CutIcon from "@/assets/icons/cut.png";
 import CopyIcon from "@/assets/icons/copy.png";
 import RenameIcon from "@/assets/icons/rename.png";
 import ShareIcon from "@/assets/icons/share.png";
-import { MenusContext } from "@/context/menusContext";
+import { WindowsContext } from "@/context/windowsContext";
+import { FileExplorer } from "@/windows/FileExplorer";
 
 interface props {
   handleRef: RefObject<HTMLDivElement>;
 }
 
 export function FolderContextualMenu({ handleRef }: props) {
-  const { setMenuState } = useContext(MenusContext);
+  const {setWindows} = useContext(WindowsContext)
 
   return (
     <ContextualMenuWrapper handleRef={handleRef}>
@@ -41,15 +42,8 @@ export function FolderContextualMenu({ handleRef }: props) {
             <div className="flex justify-start items-center gap-2">
               <img src={FileExplorerIcon} alt="File explorer icon" className="w-[26px]" />
               <button className="contextualMenuFonctionalButton p-2" onClick={() => {
-                setMenuState((prev) => {
-                  return {
-                    ...prev,
-                    fileExplorerMenu: {
-                      ...prev.fileExplorerMenu,
-                      open: true
-                    }
-                  }
-                })
+                const windowId = Date.now().toString();
+                setWindows((prev) => [...prev, {windowId, window: <FileExplorer key={windowId} windowId={windowId} /> }])
               }}>Open</button>
             </div>
             <p className="mr-2 text-slate-400 text-sm">Enter</p>
