@@ -1,4 +1,4 @@
-import { RefObject, useContext } from "react";
+import { RefObject } from "react";
 import { ContextualMenuWrapper } from "./ContextualMenuWrapper";
 import FileExplorerIcon from "@/assets/icons/file-explorer.png";
 import OpenInNewTabIcon from "@/assets/icons/open-in-new-tab.png";
