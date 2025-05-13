@@ -1,5 +1,5 @@
 import { WindowWrapper } from "@/components/WindowWrapper";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { createPortal } from "react-dom";
 import BraveBrowserIcon from "@/assets/icons/brave-browser.png";
 import { useHistory } from "@/hooks/useHistory";

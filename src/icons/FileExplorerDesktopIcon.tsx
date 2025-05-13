@@ -1,7 +1,6 @@
 import { DesktopIconWrapper } from "@/components/DesktopIconWrapper.tsx";
 import FileExplorerIcon from "@/assets/icons/file-explorer.png";
 import { useContext, useRef } from "react";
-import { MenusContext } from "@/context/menusContext.ts";
 import { FolderContextualMenu } from "@/components/FolderContextualMenu";
 import { WindowsContext } from "@/context/windowsContext";
 import { FileExplorer } from "@/windows/FileExplorer";
