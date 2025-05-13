@@ -8,8 +8,10 @@ import { FileExplorerDesktopIcon } from "@/icons/FileExplorerDesktopIcon.tsx";
 import { RectDesktop } from "@/components/RectDesktop.tsx";
 import { BraveBrowser } from "@/windows/BraveBrowser.tsx";
 import { BraveBrowserDesktopIcon } from "@/icons/BraveBrowserDesktopIcon.tsx";
+import { FocusContext } from "@/context/focusContext.ts";
 
 export default function Desktop() {
+  const [focusedWindow, setFocusedWindow] = useState<string | undefined>(undefined);
   const [menuState, setMenuState] = useState<menuType>({
     windowsMenu: {
       open: false,
@@ -26,21 +28,23 @@ export default function Desktop() {
   });
 
   return (
-    <MenusContext.Provider value={{ menuState, setMenuState }}>
-      <div className="w-fit h-fit overflow-x-hidden overflow-y-hidden z-1">
-        <div
-          className="bg-wallpaper bg-no-repeat bg-cover w-dvw h-dvh z-[-1]"
-          id="window"
-        >
-          <RectDesktop />
-          <FileExplorerDesktopIcon />
-          <BraveBrowserDesktopIcon />
+    <FocusContext.Provider value={{focusedWindow, setFocusedWindow}}>
+      <MenusContext.Provider value={{ menuState, setMenuState }}>
+        <div className="w-fit h-fit overflow-x-hidden overflow-y-hidden z-1">
+          <div
+            className="bg-wallpaper bg-no-repeat bg-cover w-dvw h-dvh z-[-1]"
+            id="window"
+          >
+            <RectDesktop />
+            <FileExplorerDesktopIcon />
+            <BraveBrowserDesktopIcon />
+          </div>
+          <Taskbar />
+          {menuState.windowsMenu.open && menuState.windowsMenu.component}
+          {menuState.fileExplorerMenu.open && menuState.fileExplorerMenu.component}
+          {menuState.braveBrowser.open && menuState.braveBrowser.component}
         </div>
-        <Taskbar />
-        {menuState.windowsMenu.open && menuState.windowsMenu.component}
-        {menuState.fileExplorerMenu.open && menuState.fileExplorerMenu.component}
-        {menuState.braveBrowser.open && menuState.braveBrowser.component}
-      </div>
-    </MenusContext.Provider>
+      </MenusContext.Provider>
+    </FocusContext.Provider>
   );
 }
