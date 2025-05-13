@@ -25,7 +25,7 @@ export function ContextualMenuWrapper({ handleRef, children }: { children: React
   }, [handleRef]);
 
   return (
-    visible && (<div style={{ top: position.y, left: position.x }} className="w-fit h-fit absolute">
+    visible && (<div style={{ top: position.y, left: position.x }} className="w-fit h-fit absolute z-50">
       {children}
     </div>)
   );

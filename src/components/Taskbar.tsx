@@ -3,6 +3,7 @@ import {Bell, ChevronUp, Search, Volume2, Wifi} from "lucide-react";
 import {useContext} from "react";
 import FileExplorerIcon from "@/assets/icons/file-explorer.png";
 import { WindowsContext } from "@/context/windowsContext";
+import { useCreateWindow } from "@/hooks/useCreateWindow";
 import { FileExplorer } from "@/windows/FileExplorer";
 
 
@@ -12,7 +13,8 @@ interface props {
 
 export function Taskbar({setStartWindow} : props) {
 
-  const {setWindows, windows} = useContext(WindowsContext);
+  const {windows} = useContext(WindowsContext);
+  const {createFileExplorerWindow} = useCreateWindow()
 
   return (
       <div
@@ -40,8 +42,7 @@ export function Taskbar({setStartWindow} : props) {
           <button
               className={`h-fit w-fit hover:bg-slate-700/40 p-2 rounded duration-100 ease-in ${windows.find((window) => window.window.type === FileExplorer) ? "bg-slate-700/50 hover:bg-slate-700/70 border-[0.5px] border-slate-600/50" : ""}`}
               onClick={() => {
-                const windowId = Date.now().toString();
-                setWindows((prev) => [...prev, {windowId, window: <FileExplorer key={windowId} windowId={windowId} /> }])
+                createFileExplorerWindow();
               }}>
             <img src={FileExplorerIcon} alt="File explorer" className="w-[32px] h-[32px]"/>
           </button>

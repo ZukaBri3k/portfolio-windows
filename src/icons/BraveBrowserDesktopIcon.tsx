@@ -1,21 +1,19 @@
 import { DesktopIconWrapper } from "@/components/DesktopIconWrapper.tsx";
 import BraverBrowserIcon from "@/assets/icons/brave-browser.png";
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 import { FolderContextualMenu } from "@/components/FolderContextualMenu";
-import { WindowsContext } from "@/context/windowsContext";
-import { BraveBrowser } from "@/windows/BraveBrowser";
+import { useCreateWindow } from "@/hooks/useCreateWindow";
 
 
 export function BraveBrowserDesktopIcon() {
-  const {setWindows} = useContext(WindowsContext)
+  const {createBraveBrowserWindow} = useCreateWindow();
   const ref = useRef<HTMLDivElement>(null);
 
   return (
     <>
       <DesktopIconWrapper>
         <div className="absolute top-2 left-28 flex flex-col items-center justify-center hover:bg-slate-700/40 p-2 rounded cursor-pointer" onDoubleClick={() => {
-          const windowId = Date.now().toString();
-          setWindows((prev) => [...prev, {windowId, window: <BraveBrowser key={windowId} windowId={windowId} /> }])
+          createBraveBrowserWindow();
         }}
           ref={ref}
         >
