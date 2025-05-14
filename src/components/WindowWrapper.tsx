@@ -27,7 +27,7 @@ export function WindowWrapper({ children, title, icon, windowId }: props) {
     } else {
       return 20;
     }
-  }, [focusedWindow, windowId]);
+  }, [focusedWindow, windowId, windows]);
 
   useEffect(() => {
     // Add event listener to the dragRef to set the focused window when the window is clicked
@@ -37,12 +37,24 @@ export function WindowWrapper({ children, title, icon, windowId }: props) {
 
     // Set the initial focused window when the component mounts
     setFocusedWindow(windowId);
-  }, []);
 
+    return () => {
+      dragRef.current?.removeEventListener("mousedown", () => {
+        setFocusedWindow(windowId);
+      });
+    }
+  }, [dragRef.current]);
+
+  /**
+   * Close the window and remove it from the windows state
+   */
   function closeWindow() {
     setWindows((prev) => prev.filter((w) => w.windowId !== windowId));
   }
 
+  /**
+   * Minimize the window by setting its isMinimized property to true
+   */
   function minimizeWindow() {
     setWindows((prev) => prev.map((w) => {
       if (w.windowId === windowId) {
