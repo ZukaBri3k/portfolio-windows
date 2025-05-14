@@ -36,7 +36,7 @@ export function DesktopIcon({ createWindowFunction, icon, text, position }: prop
           <p className="text-slate-50 text-center">{text}</p>
         </div>
       </Draggable >
-      <FolderContextualMenu handleRef={ref} />
+      <FolderContextualMenu handleRef={ref as RefObject<HTMLDivElement>} />
     </>
   );
 }
