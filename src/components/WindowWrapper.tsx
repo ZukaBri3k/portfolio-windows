@@ -1,4 +1,4 @@
-import {HTMLAttributes, ReactNode, RefObject, useContext, useEffect, useImperativeHandle, useMemo, useRef, useState} from "react";
+import {HTMLAttributes, ReactNode, RefObject, useContext, useEffect, useMemo, useRef, useState} from "react";
 import Draggable from "react-draggable";
 import {Minus, Square, X} from "lucide-react";
 import { FocusContext } from "@/context/focusContext";
@@ -17,7 +17,7 @@ export function WindowWrapper({children, title, icon, windowId}: props) {
   const { setWindows } = useContext(WindowsContext)
   const { focusedWindow, setFocusedWindow } = useContext(FocusContext);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
+  //const [isVisible, setIsVisible] = useState(true);
   const dragRef = useRef<HTMLDivElement>(null);
 
   // Set the z-index of the window based on whether it is focused or not

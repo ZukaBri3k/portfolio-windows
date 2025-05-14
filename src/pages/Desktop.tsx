@@ -1,5 +1,5 @@
 import { Taskbar } from "@/components/Taskbar";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { StartWindow } from "@/windows/WindowsWindow.tsx";
 import { RectDesktop } from "@/components/RectDesktop.tsx";
 import { FocusContext } from "@/context/focusContext.ts";
