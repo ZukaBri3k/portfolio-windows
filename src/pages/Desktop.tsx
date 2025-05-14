@@ -6,10 +6,11 @@ import { RectDesktop } from "@/components/RectDesktop.tsx";
 import { BraveBrowserDesktopIcon } from "@/icons/BraveBrowserDesktopIcon.tsx";
 import { FocusContext } from "@/context/focusContext.ts";
 import { WindowsContext } from "@/context/windowsContext.ts";
+import { windowType } from "@/types/window.type";
 
 export default function Desktop() {
   const [focusedWindow, setFocusedWindow] = useState<string | undefined>(undefined);
-  const [windows, setWindows] = useState<{windowId: string, window: JSX.Element}[]>([]);
+  const [windows, setWindows] = useState<windowType[]>([]);
   const [isStartWindowDisplayed, setIsStartWindowDisplayed] = useState(false);
 
   return (
