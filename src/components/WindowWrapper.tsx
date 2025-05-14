@@ -1,4 +1,4 @@
-import {HTMLAttributes, ReactNode, useContext, useEffect, useImperativeHandle, useMemo, useRef, useState} from "react";
+import {HTMLAttributes, ReactNode, RefObject, useContext, useEffect, useImperativeHandle, useMemo, useRef, useState} from "react";
 import Draggable from "react-draggable";
 import {Minus, Square, X} from "lucide-react";
 import { FocusContext } from "@/context/focusContext";
@@ -44,7 +44,7 @@ export function WindowWrapper({children, title, icon, windowId}: props) {
   }
   
   return (
-    <Draggable bounds="parent" handle="#handle" disabled={isFullScreen} >
+    <Draggable bounds="parent" handle="#handle" disabled={isFullScreen} nodeRef={dragRef as RefObject<HTMLElement>} >
       <div
       style={{zIndex: zIndex}}
         className={(isFullScreen ? "w-full h-[95dvh] top-0 left-0 " : "w-[60dvw] h-[70dvh] bottom-[20dvh] right-[40dvh] translate-x-[60dvh] translate-y-[70dvh] ") +` absolute bg-slate-900/90 flex flex-col rounded-xl border-[0.5px] border-slate-600 overflow-hidden`} ref={dragRef}>
