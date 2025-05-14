@@ -42,7 +42,7 @@ export function WindowWrapper({ children, title, icon, windowId }: props) {
       dragRef.current?.removeEventListener("mousedown", () => {
         setFocusedWindow(windowId);
       });
-    }
+    };
   }, [dragRef.current]);
 
   /**
@@ -65,36 +65,32 @@ export function WindowWrapper({ children, title, icon, windowId }: props) {
   }
 
   return (
-    <>
-      {!currentWindow?.isMinimized && (
-        <Draggable bounds="parent" handle="#handle" disabled={isFullScreen} nodeRef={dragRef as RefObject<HTMLElement>} >
-          <div
-            style={{ zIndex: zIndex }}
-            className={(isFullScreen ? "w-full h-[95dvh] top-0 left-0 " : "w-[60dvw] h-[70dvh] bottom-[20dvh] right-[40dvh] translate-x-[60dvh] translate-y-[70dvh] ") + ` absolute bg-slate-900/90 flex flex-col rounded-xl border-[0.5px] border-slate-600 overflow-hidden`} ref={dragRef}>
-            <div className="h-10 w-full cursor-pointer flex items-center flex-shrink-0" id="tooltip">
-              <div id="handle" className="h-full w-full flex items-center justify-start gap-3 pl-5 cursor-move">
-                {icon && <img src={icon} alt={`Icon of the application ${title}`} className="w-[24px] pointer-events-none" />}
-                <h2 className="text-slate-50">{title}</h2>
-              </div>
-              <div className="w-fit h-full flex items-center">
-                <button className="w-14 h-full hover:bg-slate-700 flex items-center justify-center" onClick={minimizeWindow}>
-                  <Minus strokeWidth={1.5} color="#E2E8F0" size={20} />
-                </button>
-                <button className="w-14 h-full hover:bg-slate-700 flex items-center justify-center" onClick={() => {
-                  setIsFullScreen((prev) => !prev);
-                  dragRef.current?.style.setProperty("transform", "translate(0, 0)");
-                }}>
-                  <Square strokeWidth={1.5} color="#E2E8F0" size={15} />
-                </button>
-                <button className="w-14 h-full hover:bg-red-700 flex items-center justify-center rounded-tr-xl" onClick={closeWindow}>
-                  <X strokeWidth={1.5} color="#E2E8F0" size={20} />
-                </button>
-              </div>
-            </div>
-            {children}
+    <Draggable bounds="parent" handle="#handle" disabled={isFullScreen} nodeRef={dragRef as RefObject<HTMLElement>} >
+      <div
+        style={{ zIndex: zIndex, display: currentWindow?.isMinimized ? "none" : "block" }}
+        className={(isFullScreen ? "w-full h-[95dvh] top-0 left-0 " : "w-[60dvw] h-[70dvh] bottom-[20dvh] right-[40dvh] translate-x-[60dvh] translate-y-[70dvh] ") + ` absolute bg-slate-900/90 flex flex-col rounded-xl border-[0.5px] border-slate-600 overflow-hidden`} ref={dragRef}>
+        <div className="h-10 w-full cursor-pointer flex items-center flex-shrink-0" id="tooltip">
+          <div id="handle" className="h-full w-full flex items-center justify-start gap-3 pl-5 cursor-move">
+            {icon && <img src={icon} alt={`Icon of the application ${title}`} className="w-[24px] pointer-events-none" />}
+            <h2 className="text-slate-50">{title}</h2>
           </div>
-        </Draggable>
-      )}
-    </>
+          <div className="w-fit h-full flex items-center">
+            <button className="w-14 h-full hover:bg-slate-700 flex items-center justify-center" onClick={minimizeWindow}>
+              <Minus strokeWidth={1.5} color="#E2E8F0" size={20} />
+            </button>
+            <button className="w-14 h-full hover:bg-slate-700 flex items-center justify-center" onClick={() => {
+              setIsFullScreen((prev) => !prev);
+              dragRef.current?.style.setProperty("transform", "translate(0, 0)");
+            }}>
+              <Square strokeWidth={1.5} color="#E2E8F0" size={15} />
+            </button>
+            <button className="w-14 h-full hover:bg-red-700 flex items-center justify-center rounded-tr-xl" onClick={closeWindow}>
+              <X strokeWidth={1.5} color="#E2E8F0" size={20} />
+            </button>
+          </div>
+        </div>
+        {children}
+      </div>
+    </Draggable>
   );
 }
