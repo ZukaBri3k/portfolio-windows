@@ -13,8 +13,8 @@ interface props {
 
 export function Taskbar({ setStartWindow }: props) {
 
-  const { windows } = useContext(WindowsContext);
-  const { createFileExplorerWindow } = useCreateWindow();
+  const { windows, setWindows } = useContext(WindowsContext);
+  const { createFileExplorerWindow } = useCreateWindow(setWindows);
 
   return (
     <div
