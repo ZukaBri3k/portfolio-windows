@@ -1,4 +1,4 @@
-import { RefObject } from "react";
+import { RefObject, useContext } from "react";
 import { ContextualMenuWrapper } from "./ContextualMenuWrapper";
 import FileExplorerIcon from "@/assets/icons/file-explorer.png";
 import OpenInNewTabIcon from "@/assets/icons/open-in-new-tab.png";
@@ -16,13 +16,15 @@ import CopyIcon from "@/assets/icons/copy.png";
 import RenameIcon from "@/assets/icons/rename.png";
 import ShareIcon from "@/assets/icons/share.png";
 import { useCreateWindow } from "@/hooks/useCreateWindow";
+import { WindowsContext } from "@/context/windowsContext";
 
 interface props {
   handleRef: RefObject<HTMLDivElement>;
 }
 
 export function FolderContextualMenu({ handleRef }: props) {
-  const {createFileExplorerWindow} = useCreateWindow()
+  const { setWindows } = useContext(WindowsContext)
+  const {createFileExplorerWindow} = useCreateWindow(setWindows)
 
   return (
     <ContextualMenuWrapper handleRef={handleRef}>
