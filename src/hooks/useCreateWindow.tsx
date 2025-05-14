@@ -11,7 +11,7 @@ export function useCreateWindow(setWindows: React.Dispatch<React.SetStateAction<
     const windowId = Date.now().toString();   
     setWindows((prev) => [
       ...prev,
-      { windowId, window: <FileExplorer key={windowId} windowId={windowId} />, icon: FileExplorerIcon },
+      { windowId, window: <FileExplorer key={windowId} windowId={windowId} />, icon: FileExplorerIcon, isMinimized: false },
     ]);
   }
 
@@ -19,7 +19,7 @@ export function useCreateWindow(setWindows: React.Dispatch<React.SetStateAction<
     const windowId = Date.now().toString();
     setWindows((prev) => [
       ...prev,
-      { windowId, window: <BraveBrowser key={windowId} windowId={windowId} />, icon: BraveBrowserIcon },
+      { windowId, window: <BraveBrowser key={windowId} windowId={windowId} />, icon: BraveBrowserIcon, isMinimized: false },
     ]);
   }
 

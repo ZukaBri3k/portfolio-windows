@@ -16,6 +16,15 @@ export function Taskbar({ setStartWindow }: props) {
   const { windows, setWindows } = useContext(WindowsContext);
   const { createFileExplorerWindow } = useCreateWindow(setWindows);
 
+  function enlargeWindow(windowId: string) {
+    setWindows((prev) => prev.map((w) => {
+      if (w.windowId === windowId) {
+        return { ...w, isMinimized: false };
+      }
+      return w;
+    }));
+  }
+
   return (
     <div
       className="fixed bottom-0 flex h-fit w-full items-center justify-center gap-3 border-t-2 border-slate-700 pt-1 pb-1 backdrop-blur-sm bg-slate-800/85 z-50">
@@ -50,6 +59,7 @@ export function Taskbar({ setStartWindow }: props) {
           <button
             key={window.windowId}
             className="h-fit w-fit hover:bg-slate-700/40 p-2 rounded duration-100 ease-in bg-slate-700/50 border-[0.5px] border-slate-600/50"
+            onClick={() => enlargeWindow(window.windowId)}
           >
             <img src={window.icon} alt="File explorer" className="w-[32px] h-[32px]" />
           </button>

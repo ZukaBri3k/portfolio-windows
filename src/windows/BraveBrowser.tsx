@@ -1,9 +1,9 @@
-import { WindowWrapper } from "@/components/WindowWrapper";
 import { useRef } from "react";
 import { createPortal } from "react-dom";
 import BraveBrowserIcon from "@/assets/icons/brave-browser.png";
 import { useHistory } from "@/hooks/useHistory";
 import { ChevronLeft, ChevronRight, Home, RefreshCcw } from "lucide-react";
+import { WindowWrapper } from "@/components/WindowWrapper";
 
 
 interface props {
