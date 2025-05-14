@@ -1,7 +1,7 @@
 import PP from '@/assets/images/profil_picture.jpeg';
 import { PasswordInput } from "@/components/PasswordInput.tsx";
+import { animate } from 'animejs';
 import { useEffect, useState } from "react";
-import anime from "animejs";
 
 export default function Login() {
 
@@ -10,16 +10,14 @@ export default function Login() {
   function keyBoardEvent(e: KeyboardEvent) {
     if (e.key === "Enter" && isHomeScreenDisplayed) {
       setIsHomeScreenDisplayed(false);
-      anime({
-        targets: "#welcomeScreen",
+      animate('#welcomeScreen', {
         translateY: "-100%",
         duration: 500,
         easing: "easeInOutQuart",
       });
     } else if (e.key === "Escape" && !isHomeScreenDisplayed) {
       setIsHomeScreenDisplayed(true);
-      anime({
-        targets: "#welcomeScreen",
+      animate("#welcomeScreen", {
         translateY: "0%",
         duration: 500,
         easing: "easeInOutQuart",
@@ -30,8 +28,7 @@ export default function Login() {
   function clickEvent(e: MouseEvent) {
     if (isHomeScreenDisplayed && e.button === 0) {
       setIsHomeScreenDisplayed(false);
-      anime({
-        targets: "#welcomeScreen",
+      animate("#welcomeScreen", {
         translateY: "-100%",
         duration: 500,
         easing: "easeInOutQuart",

@@ -1,9 +1,9 @@
 import {createPortal} from "react-dom";
 import {useEffect, useRef} from "react";
-import anime from "animejs";
 import {Power, Search} from "lucide-react";
 import PP from "@/assets/images/profil_picture.jpeg";
 import {useNavigate} from "react-router-dom";
+import { animate } from "animejs";
 
 
 interface props {
@@ -15,8 +15,7 @@ export function StartWindow({setIsOpen} : props) {
   const navigate = useNavigate();
   
   useEffect(() => {
-    anime({
-      targets: modalRef.current,
+    animate(modalRef.current!, {
       bottom: "50%",
       duration: 50,
       elasticity: 0,
@@ -25,8 +24,7 @@ export function StartWindow({setIsOpen} : props) {
   }, []);
   
   function close() {
-    anime({
-      targets: modalRef.current,
+    animate(modalRef.current!, {
       duration: 500,
       elasticity: 0,
       bottom: "-600px",

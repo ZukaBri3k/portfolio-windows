@@ -12,7 +12,7 @@
     "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
-    "animejs": "^3.2.2",
+    "animejs": "^4.0.2",
     "gh-pages": "^6.2.0",
     "lucide-react": "^0.453.0",
     "react": "^19.1.0",
