@@ -7,7 +7,7 @@ export function minimizeWindowAnimation(ref: RefObject<HTMLElement>) {
 
   return animate(ref.current, {
     x: 0,
-    y:  taskbarY - rect.top,
+    translateY:  taskbarY - rect.top,
     scale: 0.1,
     opacity: 0,
     easing: "easeInOutQuad",
