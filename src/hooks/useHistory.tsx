@@ -6,6 +6,7 @@ export function useHistory(defaultURL: string = "https://www.google.com/webhp?ig
 
   function addToHistory(url: string) {
     console.log(currentIndex, history)
+    if(url === "") return;
     setHistory((prev) => [...prev, url]);
     setCurrentIndex((prev) => prev + 1);
   }
