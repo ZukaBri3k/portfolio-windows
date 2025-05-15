@@ -121,7 +121,9 @@ export function WindowWrapper({ children, title, icon, windowId }: props) {
             </button>
           </div>
         </div>
-        {children}
+        <div className="w-full h-full flex-shrink">
+          {children}
+        </div>
       </div>
     </Draggable>
   );
