@@ -1,6 +1,7 @@
 import { WindowWrapper } from "@/components/WindowWrapper.tsx";
 import { createPortal } from "react-dom";
 
+import BraveBrowserIcon from "@/assets/icons/brave-browser.png";
 import DesktopIcon from "@/assets/icons/desktop.png";
 import DocumentsIcon from "@/assets/icons/documents.png";
 import DownloadsIcon from "@/assets/icons/downloads.png";
@@ -12,7 +13,6 @@ import NetworkIcon from "@/assets/icons/network.png";
 import PcIcon from "@/assets/icons/pc.png";
 import PicturesIcon from "@/assets/icons/pictures.png";
 import VideosIcon from "@/assets/icons/videos.png";
-import BraveBrowserIcon from "@/assets/icons/brave-browser.png";
 import { WindowsContext } from "@/context/windowsContext";
 import { useCreateWindow } from "@/hooks/useCreateWindow";
 import {
