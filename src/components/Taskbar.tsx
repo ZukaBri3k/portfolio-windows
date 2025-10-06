@@ -1,10 +1,7 @@
 import Windows from "@/assets/images/logo_windows.png";
 import { Bell, ChevronUp, Search, Volume2, Wifi } from "lucide-react";
 import { useContext } from "react";
-import FileExplorerIcon from "@/assets/icons/file-explorer.png";
 import { WindowsContext } from "@/context/windowsContext";
-import { useCreateWindow } from "@/hooks/useCreateWindow";
-import { FileExplorer } from "@/windows/FileExplorer";
 
 
 interface props {
@@ -14,7 +11,6 @@ interface props {
 export function Taskbar({ setStartWindow }: props) {
 
   const { windows, setWindows } = useContext(WindowsContext);
-  const { createFileExplorerWindow } = useCreateWindow(setWindows);
 
   function enlargeWindow(windowId: string) {
     setWindows((prev) => prev.map((w) => {
