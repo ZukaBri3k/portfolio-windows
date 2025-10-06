@@ -50,24 +50,6 @@ export function Taskbar({ setStartWindow }: props) {
                       className="bg-transparent text-slate-300 outline-none"
                   />
               </div>
-              <button
-                  className={`h-fit w-fit hover:bg-slate-700/40 p-2 rounded duration-100 ease-in ${
-                      windows.find(
-                          (window) => window.window.type === FileExplorer
-                      )
-                          ? "bg-slate-700/50 hover:bg-slate-700/70 border-[0.5px] border-slate-600/50"
-                          : ""
-                  }`}
-                  onClick={() => {
-                      createFileExplorerWindow();
-                  }}
-              >
-                  <img
-                      src={FileExplorerIcon}
-                      alt="File explorer"
-                      className="w-[32px] h-[32px]"
-                  />
-              </button>
               {windows.map((window) => (
                   <button
                       key={window.windowId}
