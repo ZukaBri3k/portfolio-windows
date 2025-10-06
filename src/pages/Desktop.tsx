@@ -9,12 +9,13 @@ import { useCreateWindow } from "@/hooks/useCreateWindow";
 import { DesktopIcon } from "@/components/DesktopIcon";
 import FileExplorerIcon from "@/assets/icons/file-explorer.png";
 import BraveBrowserIcon from "@/assets/icons/brave-browser.png";
+import VSCIcon from "@/assets/icons/vsc-icon.png";
 
 export default function Desktop() {
   const [focusedWindow, setFocusedWindow] = useState<string | undefined>(undefined);
   const [windows, setWindows] = useState<windowType[]>([]);
   const [isStartWindowDisplayed, setIsStartWindowDisplayed] = useState(false);
-  const { createFileExplorerWindow, createBraveBrowserWindow } = useCreateWindow(setWindows);
+  const { createFileExplorerWindow, createBraveBrowserWindow, createVSCWindow } = useCreateWindow(setWindows);
 
   return (
     <WindowsContext.Provider value={{ setWindows, windows }}>
@@ -27,6 +28,7 @@ export default function Desktop() {
             <RectDesktop />
             <DesktopIcon createWindowFunction={createFileExplorerWindow} icon={FileExplorerIcon} text="File explorer" position={{x: 2, y: 2}} />
             <DesktopIcon createWindowFunction={createBraveBrowserWindow} icon={BraveBrowserIcon} text="Brave Browser" position={{ x: 130, y: 2 }} />
+            <DesktopIcon createWindowFunction={createVSCWindow} icon={VSCIcon} text="Visual Studio Code" position={{ x: 260, y: 2 }} />
           </div>
           <Taskbar setStartWindow={setIsStartWindowDisplayed} />
           {isStartWindowDisplayed && <StartWindow setIsOpen={setIsStartWindowDisplayed} />}

@@ -4,6 +4,8 @@ import { FileExplorer } from "@/windows/FileExplorer";
 import FileExplorerIcon from "@/assets/icons/file-explorer.png";
 import BraveBrowserIcon from  "@/assets/icons/brave-browser.png";
 import { windowType } from "@/types/window.type";
+import { VSC } from "@/windows/VSC";
+import VSCIcon from "@/assets/icons/vsc-icon.png";
 
 export function useCreateWindow(setWindows: React.Dispatch<React.SetStateAction<windowType[]>>) {
 
@@ -23,5 +25,13 @@ export function useCreateWindow(setWindows: React.Dispatch<React.SetStateAction<
     ]);
   }
 
-  return { createFileExplorerWindow, createBraveBrowserWindow };
+  function createVSCWindow() {
+    const windowId = Date.now().toString()
+    setWindows((prev) => [
+      ...prev,
+      { windowId, window: <VSC key={windowId} windowId={windowId} />, icon: VSCIcon, isMinimized: false },
+    ])
+  }
+
+  return { createFileExplorerWindow, createBraveBrowserWindow, createVSCWindow };
 }
