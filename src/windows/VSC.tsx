@@ -9,7 +9,9 @@ import Extensions from "@/assets/icons/extensions.svg"
 import SettingsGear from "@/assets/icons/settings-gear.svg"
 import Account from "@/assets/icons/account.svg"
 import { ChevronDown, Ellipsis } from "lucide-react";
-import Markdown from "@/assets/icons/markdown.svg"
+import MarkdownIcon from "@/assets/icons/markdown.svg"
+import Markdown from "react-markdown";
+import projectsContent from "@/projects.md?raw";
 
 interface props {
     windowId: string;
@@ -22,7 +24,7 @@ export function VSC({ windowId }: props) {
             icon={VSCIcon}
             windowId={windowId}
         >
-            <div className="w-full h-full bg-slate-900 flex">
+            <div className="w-full h-[calc(100%-40px)] bg-slate-900 flex">
                 <div className="h-full w-[64px] flex flex-col justify-between items-center bg-gray-700">
                     <div className="h-fit w-full flex flex-col gap-7 justify-start items-center pt-5">
                         <img
@@ -75,11 +77,17 @@ export function VSC({ windowId }: props) {
                         <p className="text-slate-50">Mes projets</p>
                     </div>
                     <div className="pl-12 mt-4 flex justify-start items-center gap-1">
-                        <img src={Markdown} alt="Markdown icon" width={25} />
+                        <img src={MarkdownIcon} alt="Markdown icon" width={25} />
                         <p className="text-slate-400 hover:text-slate-200 cursor-pointer duration-75">projets.md</p>
                     </div>
                 </div>
-                <div className="w-full h-full bg-gray-900 flex-1"></div>
+                <div className="w-full h-full bg-gray-900 flex-1 overflow-y-scroll p-8 text-slate-50">
+                    <div className="prose prose-invert max-w-none">
+                        <Markdown>
+                            {projectsContent}
+                        </Markdown>
+                    </div>
+                </div>
             </div>
         </WindowWrapper>,
         document.getElementById("window") as HTMLElement
