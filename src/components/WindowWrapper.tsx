@@ -78,7 +78,6 @@ export function WindowWrapper({ children, title, icon, windowId }: props) {
 
   function fullScreenWindow() {
     if(!dragRef.current) return;
-    console.log("fullScreenWindow", isFullScreen);
 
     if(!isFullScreen) {
       setWindowRect(dragRef.current.getBoundingClientRect());
@@ -86,8 +85,9 @@ export function WindowWrapper({ children, title, icon, windowId }: props) {
       dragRef.current.style.setProperty("top", "0");
       dragRef.current.style.setProperty("left", "0");
       dragRef.current.style.setProperty("width", "100%");
-      dragRef.current.style.setProperty("height", "100%");
+      dragRef.current.style.setProperty("height", "calc(100% - 56px)");
       dragRef.current.style.setProperty("transform", "translate(0, 0)");
+      dragRef.current.style.setProperty("border-radius", "0");
 
     } else {
       dragRef.current.style.setProperty("transform", `translate(${windowRect?.x}px, ${windowRect?.y}px)`);
@@ -95,6 +95,7 @@ export function WindowWrapper({ children, title, icon, windowId }: props) {
       dragRef.current.style.setProperty("width", `${windowRect?.width}px`);
       dragRef.current.style.setProperty("height", `${windowRect?.height}px`);
       dragRef.current.style.setProperty("transform", `translate(${windowRect?.x}px, ${windowRect?.y}px)`);
+      dragRef.current.style.setProperty("border-radius", "0.75rem");
     }
 
   }
