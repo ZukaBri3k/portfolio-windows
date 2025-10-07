@@ -86,3 +86,7 @@
   background-color: #252526;
   font-weight: 600;
 }
+
+.markdown-body hr {
+  margin: 1em 0;
+}
