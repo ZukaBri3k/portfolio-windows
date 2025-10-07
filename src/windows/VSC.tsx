@@ -1,17 +1,18 @@
+import Account from "@/assets/icons/account.svg";
+import Debug from "@/assets/icons/debug-alt.svg";
+import Extensions from "@/assets/icons/extensions.svg";
+import Files from "@/assets/icons/files.svg";
+import Git from "@/assets/icons/git-merge.svg";
+import MarkdownIcon from "@/assets/icons/markdown.svg";
+import Search from "@/assets/icons/search.svg";
+import SettingsGear from "@/assets/icons/settings-gear.svg";
 import VSCIcon from "@/assets/icons/vsc-icon.png";
 import { WindowWrapper } from "@/components/WindowWrapper";
-import { createPortal } from "react-dom";
-import Files from "@/assets/icons/files.svg";
-import Search from "@/assets/icons/search.svg";
-import Git from "@/assets/icons/git-merge.svg";
-import Debug from "@/assets/icons/debug-alt.svg";
-import Extensions from "@/assets/icons/extensions.svg"
-import SettingsGear from "@/assets/icons/settings-gear.svg"
-import Account from "@/assets/icons/account.svg"
-import { ChevronDown, Ellipsis } from "lucide-react";
-import MarkdownIcon from "@/assets/icons/markdown.svg"
-import Markdown from "react-markdown";
 import projectsContent from "@/projects.md?raw";
+import "@/styles/md-styles.css";
+import { ChevronDown, Ellipsis } from "lucide-react";
+import { createPortal } from "react-dom";
+import Markdown from "react-markdown";
 
 interface props {
     windowId: string;
@@ -77,15 +78,19 @@ export function VSC({ windowId }: props) {
                         <p className="text-slate-50">Mes projets</p>
                     </div>
                     <div className="pl-12 mt-4 flex justify-start items-center gap-1">
-                        <img src={MarkdownIcon} alt="Markdown icon" width={25} />
-                        <p className="text-slate-400 hover:text-slate-200 cursor-pointer duration-75">projets.md</p>
+                        <img
+                            src={MarkdownIcon}
+                            alt="Markdown icon"
+                            width={25}
+                        />
+                        <p className="text-slate-400 hover:text-slate-200 cursor-pointer duration-75">
+                            projets.md
+                        </p>
                     </div>
                 </div>
                 <div className="w-full h-full bg-gray-900 flex-1 overflow-y-scroll p-8 text-slate-50">
-                    <div className="prose prose-invert max-w-none">
-                        <Markdown>
-                            {projectsContent}
-                        </Markdown>
+                    <div className="prose prose-invert max-w-none markdown-body">
+                        <Markdown>{projectsContent}</Markdown>
                     </div>
                 </div>
             </div>
