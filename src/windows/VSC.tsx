@@ -9,8 +9,10 @@ import SettingsGear from "@/assets/icons/settings-gear.svg";
 import VSCIcon from "@/assets/icons/vsc-icon.png";
 import { WindowWrapper } from "@/components/WindowWrapper";
 import projectsContent from "@/md-files/projects.md?raw";
+import meContent from "@/md-files/me.md?raw";
 import "@/styles/md-styles.css";
 import { ChevronDown, Ellipsis } from "lucide-react";
+import { useState } from "react";
 import { createPortal } from "react-dom";
 import Markdown from "react-markdown";
 
@@ -19,6 +21,9 @@ interface props {
 }
 
 export function VSC({ windowId }: props) {
+    
+    const [currentFile, setCurrentFile] = useState<"projects" | "me">("projects")
+
     return createPortal(
         <WindowWrapper
             title="Visual Studio Code"
@@ -77,20 +82,51 @@ export function VSC({ windowId }: props) {
                         <ChevronDown className="text-slate-50" />
                         <p className="text-slate-50">Mes projets</p>
                     </div>
-                    <div className="pl-12 mt-4 flex justify-start items-center gap-1">
-                        <img
-                            src={MarkdownIcon}
-                            alt="Markdown icon"
-                            width={25}
-                        />
-                        <p className="text-slate-400 hover:text-slate-200 cursor-pointer duration-75">
-                            projets.md
-                        </p>
+                    <div className="pl-12 mt-4 flex-col gap-2 flex">
+                        <div
+                            className={`flex items-center gap-1 w-fit p-1 rounded-sm ${
+                                currentFile == "projects" ? "bg-slate-400/20" : ""
+                            }`}
+                        >
+                            <img
+                                src={MarkdownIcon}
+                                alt="Markdown icon"
+                                width={25}
+                            />
+                            <p
+                                className="text-slate-400 hover:text-slate-200 cursor-pointer duration-75"
+                                onClick={() => setCurrentFile("projects")}
+                            >
+                                projets.md
+                            </p>
+                        </div>
+                        <div
+                            className={`flex items-center gap-1 w-fit p-1 rounded-sm ${
+                                currentFile == "me" ? "bg-slate-400/20" : ""
+                            }`}
+                        >
+                            <img
+                                src={MarkdownIcon}
+                                alt="Markdown icon"
+                                width={25}
+                            />
+                            <p
+                                className="text-slate-400 hover:text-slate-200 cursor-pointer duration-75"
+                                onClick={() => setCurrentFile("me")}
+                            >
+                                qui_suis-je.md
+                            </p>
+                        </div>
                     </div>
                 </div>
                 <div className="w-full h-full bg-gray-900 flex-1 overflow-y-scroll p-8 text-slate-50">
                     <div className="prose prose-invert max-w-none markdown-body">
-                        <Markdown>{projectsContent}</Markdown>
+                        {currentFile == "projects" && (
+                            <Markdown>{projectsContent}</Markdown>
+                        )}
+                        {currentFile == "me" && (
+                            <Markdown>{meContent}</Markdown>
+                        )}
                     </div>
                 </div>
             </div>
