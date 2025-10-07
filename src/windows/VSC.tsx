@@ -8,7 +8,7 @@ import Search from "@/assets/icons/search.svg";
 import SettingsGear from "@/assets/icons/settings-gear.svg";
 import VSCIcon from "@/assets/icons/vsc-icon.png";
 import { WindowWrapper } from "@/components/WindowWrapper";
-import projectsContent from "@/projects.md?raw";
+import projectsContent from "@/md-files/projects.md?raw";
 import "@/styles/md-styles.css";
 import { ChevronDown, Ellipsis } from "lucide-react";
 import { createPortal } from "react-dom";
