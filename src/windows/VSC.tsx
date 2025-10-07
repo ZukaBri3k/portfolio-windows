@@ -55,7 +55,7 @@ export function VSC({ windowId }: props) {
                             width={25}
                         />
                     </div>
-                    <div className="flex flex-col items-center justify-center gap-5 pb-16">
+                    <div className="flex flex-col items-center justify-center gap-5 pb-4">
                         <img
                             src={Account}
                             alt="Account icon"
