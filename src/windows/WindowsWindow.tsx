@@ -5,12 +5,18 @@ import { WindowsContext } from "@/context/windowsContext";
 import { useCreateWindow } from "@/hooks/useCreateWindow";
 import { animate } from "animejs";
 import { Power, Search } from "lucide-react";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 
 interface props {
     setIsOpen: (isOpen: boolean) => void;
+}
+
+interface applications {
+    name: string;
+    icon: string;
+    onClick: () => void;
 }
 
 export function StartWindow({ setIsOpen }: props) {
@@ -19,6 +25,23 @@ export function StartWindow({ setIsOpen }: props) {
     const { setWindows } = useContext(WindowsContext);
     const { createBraveBrowserWindow, createVSCWindow } =
         useCreateWindow(setWindows);
+    const defaultApplications: applications[] = [
+        {
+            name: "Brave",
+            icon: BraveIcon,
+            onClick: () => {
+                createBraveBrowserWindow();
+            },
+        },
+        {
+            name: "VSCode",
+            icon: VSCIcon,
+            onClick: () => {
+                createVSCWindow();
+            },
+        },
+    ];
+    const [applications, setApplications] = useState<applications[]>(defaultApplications);
 
     useEffect(() => {
         animate(modalRef.current!, {
@@ -57,37 +80,50 @@ export function StartWindow({ setIsOpen }: props) {
                         type="text"
                         name="research"
                         placeholder="Recherchez des applications, des paramètres et des documents"
+                        onInput={(e) => {
+                            const search = (e.target as HTMLInputElement).value;
+
+                            if (search.length > 0) {
+                                setApplications((prev) => {
+                                    return prev.filter((application) => {
+                                        return application.name
+                                            .toLowerCase()
+                                            .includes(
+                                                search.toLowerCase().trim()
+                                            );
+                                    });
+                                });
+                            } else {
+                                setApplications(defaultApplications);
+                            }
+                        }}
                     />
                 </div>
                 <div className="w-full h-full pl-10 flex justify-start items-start flex-wrap gap-8">
-                    <div
-                        className="flex flex-col justify-center items-center gap-2 hover:bg-slate-600/40 p-2 rounded-xl w-[90px] cursor-pointer"
-                        onClick={() => {
-                            createBraveBrowserWindow();
-                            close();
-                        }}
-                    >
-                        <img
-                            src={BraveIcon}
-                            alt="Brave icon"
-                            className="w-[50px]"
-                        />
-                        <p className="text-slate-300">Brave</p>
-                    </div>
-                    <div
-                        className="flex flex-col justify-center items-center gap-2 hover:bg-slate-600/40 p-2 rounded-xl w-[90px] cursor-pointer"
-                        onClick={() => {
-                            createVSCWindow();
-                            close();
-                        }}
-                    >
-                        <img
-                            src={VSCIcon}
-                            alt="VSCode icon"
-                            className="w-[50px]"
-                        />
-                        <p className="text-slate-300">VSCode</p>
-                    </div>
+                    {applications.map((application) => (
+                        <div
+                            key={application.name}
+                            className="flex flex-col justify-center items-center gap-2 hover:bg-slate-600/40 p-2 rounded-xl w-[90px] cursor-pointer"
+                            onClick={() => {
+                                application.onClick();
+                                close();
+                            }}
+                        >
+                            <img
+                                src={application.icon}
+                                alt="Brave icon"
+                                className="w-[50px]"
+                            />
+                            <p className="text-slate-300">{application.name}</p>
+                        </div>
+                    ))}
+                    {applications.length === 0 && (
+                        <div className="h-full w-full flex justify-center items-start mt-10">
+                            <p className="text-slate-300">
+                                Aucune application trouvée
+                            </p>
+                        </div>
+                    )}
                 </div>
                 <div className="w-full h-[100px] bg-slate-900/40 rounded-b-xl flex items-center pl-12 pr-12">
                     <div className="flex gap-2 items-center w-full">
